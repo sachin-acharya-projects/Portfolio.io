@@ -1,0 +1,213 @@
+$ripple-color: rgb(116, 218, 252);
+$ripple-opacity: 0.5;
+
+nav {
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    background: #ffffff;
+    z-index: 1;
+
+    h1 {
+        border: 1px solid rgb(31, 31, 31);
+        height: 100%;
+        font-size: 2em;
+    }
+
+    ul {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        gap: 30px;
+        width: fit-content;
+
+        list-style: none;
+        padding-right: 20px;
+
+        li {
+            width: fit-content;
+
+            a {
+                color: inherit;
+                font-size: 13px;
+                font-weight: 700;
+                transition: 0.3s all linear;
+
+                &.active,
+                &:hover {
+                    color: deepskyblue;
+                }
+            }
+        }
+    }
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    padding-top: 70px;
+
+    display: flex;
+
+    aside {
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 20px;
+        width: 100px;
+
+        .wrapper {
+            margin-top: -120px;
+        }
+
+        p {
+            width: fit-content;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.3s all linear;
+
+            &:hover {
+                color: deepskyblue;
+                padding: 20px;
+            }
+        }
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20px;
+
+        .greetings {
+            color: deepskyblue;
+            margin-top: 20px;
+        }
+
+        .my-name {
+            color: rgb(1, 1, 63);
+        }
+
+        .my-skills {
+            margin-top: 10px;
+            color: rgba(2, 2, 78, 0.815);
+            display: flex;
+            gap: 3px;
+            align-items: center;
+
+            .cursor {
+                height: 30px;
+                width: 2px;
+                background: rgba(2, 2, 78, 0.815);
+                display: block;
+                animation: blink 0.5s linear infinite alternate;
+
+                &.active {
+                    animation: none;
+                }
+
+                @keyframes blink {
+                    from {
+                        scale: 0;
+                        opacity: 0;
+                    }
+
+                    to {
+                        scale: 1;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .descriptions {
+            margin-top: 20px;
+            width: 450px;
+            font-size: 14px;
+            color: #838383;
+        }
+
+        .actions {
+            margin-top: 35px;
+
+            button {
+                width: 200px;
+                height: 60px;
+                border-radius: 30px;
+                transition: 0.3s all linear;
+                outline: none;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: "";
+
+                    position: absolute;
+                    left: var(--x);
+                    top: var(--y);
+                    transform: translate(-50%, -50%) scale(0);
+
+                    transition: transform 750ms;
+
+                    width: 150%;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+
+                    background: $ripple-color;
+                    opacity: $ripple-opacity;
+                }
+
+                &.pulse::before {
+                    animation: pulse 1000ms;
+                }
+            }
+
+            .download-cv {
+                background-color: dodgerblue;
+                color: white;
+                font-weight: 600;
+
+
+                &:hover {
+                    border: 2.5px solid dodgerblue;
+                    background-color: transparent;
+                    color: inherit;
+                }
+            }
+
+            .contact-me {
+                border: 2.5px solid dodgerblue;
+                background: none;
+                margin-left: 15px;
+
+                &:hover {
+                    background-color: dodgerblue;
+                    border: none;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: $ripple-opacity;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
